@@ -1,0 +1,7 @@
+= simple_form_for(instance_variable_get("@#{singular_table_name}")) do |f|
+  = f.error_notification
+  .inputs
+    - attributes.each do |attribute|
+      = f.send((attribute.reference? ? :association : :input), "#{attribute.name.to_sym}")
+  .actions
+    = f.button :submit
