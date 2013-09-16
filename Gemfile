@@ -18,3 +18,5 @@ end
 gem 'zurb-foundation'
 gem 'haml-rails'
 gem 'simple_form'
+
+gem 'devise'

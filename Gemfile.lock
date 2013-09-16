@@ -33,6 +33,7 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.14)
+    bcrypt-ruby (3.1.2)
     builder (3.1.4)
     columnize (0.3.6)
     debugger (1.6.1)
@@ -41,6 +42,12 @@ GEM
       debugger-ruby_core_source (~> 1.2.3)
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.3)
+    devise (3.1.0)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     erubis (2.7.0)
     haml (4.0.3)
       tilt
@@ -57,6 +64,7 @@ GEM
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.0)
+    orm_adapter (0.4.0)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -95,6 +103,8 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
+    warden (1.2.3)
+      rack (>= 1.0)
     zurb-foundation (4.3.1)
       sass (>= 3.2.0)
 
@@ -104,6 +114,7 @@ PLATFORMS
 DEPENDENCIES
   debugger
   haml-rails
+  devise
   honcho!
   simple_form
   sqlite3

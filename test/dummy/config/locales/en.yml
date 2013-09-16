@@ -20,4 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  honcho:
+    panel: Panel
+    panel_to_welcome:
+      welcome: "Welcome to Honcho. This is your default Dashboard"

@@ -7,8 +7,8 @@ require "honcho/version"
 Gem::Specification.new do |s|
   s.name        = "honcho"
   s.version     = Honcho::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
+  s.authors     = ["Hitendra & Sachin87"]
+  s.email       = ["hitendrasingh1985@gmail.com"]
   s.homepage    = "TODO"
   s.summary     = "TODO: Summary of Honcho."
   s.description = "TODO: Description of Honcho."

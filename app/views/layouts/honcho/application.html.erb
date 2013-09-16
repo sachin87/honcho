@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
+
+  	<!-- Uncomment to make IE8 render like IE7 -->
+  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+
+  	<!-- Set the viewport width to device width for mobile -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= [@page_title, render_or_call_method_or_proc_on(self, Honcho.application.site_title)].compact.join(" | ") %></title>
+
+  	<% Honcho.application.stylesheets.each do |style, options| %>
+    	<%= stylesheet_link_tag style, options %>
+  	<% end %>
+  	<% Honcho.application.javascripts.each do |path| %>
+    	<%= javascript_include_tag path %>
+    <% end %>
+  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= csrf_meta_tags %>
+  	<%= favicon_link_tag Honcho.application.favicon if Honcho.application.favicon %>
+
+  	<%= csrf_meta_tag %>
+	</head>
+	<body class="<%= controller.action_name %>">
+		<div id="wrapper">
+
+		  <div id="content_wrapper">
+		    <% if flash_messages.any? %>
+		      <% flash_messages.each do |type, message| %>
+		        <%= content_tag :div, message, :class => "flash flash_#{type}" %>
+		      <% end %>
+		    <% end %>
+		    <div id="content">
+		      <%= yield %>
+		    </div>
+		  </div>
+		  <div id="footer">
+		    <%= yield :footer %>
+		  </div>
+		</div>
+	</body>
+</html>
