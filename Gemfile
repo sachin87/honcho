@@ -16,3 +16,5 @@ group :development do
 end
 
 gem 'zurb-foundation'
+gem 'haml-rails'
+gem 'simple_form'

@@ -1,0 +1,9 @@
+!!!
+%html
+  %head
+    %title Honcho
+    = stylesheet_link_tag    "honcho/application", media: "all"
+    = javascript_include_tag "honcho/application"
+    = csrf_meta_tags
+  %body
+    = yield

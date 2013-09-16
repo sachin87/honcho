@@ -1,3 +1,5 @@
 Honcho::Engine.routes.draw do
-  #get 'admin', to: ""
+
+  get 'admin' => 'admin_dashboard#index'
+
 end
