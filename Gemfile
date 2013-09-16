@@ -11,4 +11,8 @@ gemspec
 # your gem to rubygems.org.
 
 # To use debugger
-# gem 'debugger'
+group :development do
+  gem 'debugger'
+end
+
+gem 'zurb-foundation'
