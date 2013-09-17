@@ -14,6 +14,10 @@ module Honcho
     self.configuration[:default_theme] = val
   end
 
+  def self.title(val)
+    self.configuration[:title] = "Admin Panel"
+  end
+
   def self.config
     self.configuration ||= {}
     if block_given?
@@ -26,7 +30,7 @@ module Honcho
 
   def self.create_controllers
     configuration[:admin_models].each do |klass|
-      controller_name = (klass.to_s.pluralize.capitalize + "Controller").constantize
+      controller_name = (klass.to_s.pluralize.capitalize + "Controller")
       Honcho.const_set("#{controller_name}", Class.new(Honcho::AdminController))
     end
   end

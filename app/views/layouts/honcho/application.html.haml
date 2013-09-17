@@ -21,18 +21,18 @@
       %ul.title-area
         %li.name
           %h1
-            = link_to "#{application_title}"
+            = link_to "#{application_title}", "#"
       .top-bar-section
         %ul.right
           %li.divider
-          = nav_bar_options.each do |nav|
+          - nav_bar_options.each do |nav|
             %li
-              = link_to "#{nav}"
+              = link_to "#{nav}", "#"
             %li.divider  
     .row
       .small-8.columns
-        = main_content
+        = yield #main_content
       .small-4.columns
-        = side_bar
+        =# side_bar
 
     = javascript_include_tag "application"

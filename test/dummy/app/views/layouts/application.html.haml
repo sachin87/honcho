@@ -10,13 +10,13 @@
       %ul.title-area
         %li.name
           %h1
-            = link_to "#{application_title}"
+            = link_to "#{application_title}", "#"
       .top-bar-section
         %ul.right
           - nav_bar_options.each do |nav|
             %li.divider          
             %li
-              = link_to "#{nav}"          
+              = link_to "#{nav}" , "#"         
     .row
       .small-8.columns
         = yield #main_content
