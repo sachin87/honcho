@@ -1,7 +1,5 @@
 module Honcho
 
-  require 'debugger'
-
   mattr_accessor :configuration
 
   class Engine < ::Rails::Engine
@@ -20,8 +18,16 @@ module Honcho
     self.configuration ||= {}
     if block_given?
       yield(self)
+      create_controllers
     else
       raise 'No configuration block found.'
+    end
+  end
+
+  def self.create_controllers
+    configuration[:admin_models].each do |klass|
+      controller_name = (klass.to_s.pluralize.capitalize + "Controller").constantize
+      Honcho.const_set("#{controller_name}", Class.new(Honcho::AdminController))
     end
   end
 

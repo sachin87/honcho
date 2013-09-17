@@ -15,4 +15,5 @@ Honcho.config do |config|
 
   config.admin_models  [:post, :comment, :product]
 
+
 end
