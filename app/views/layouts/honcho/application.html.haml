@@ -13,9 +13,26 @@
     / Set the viewport width to device width for mobile
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %title= content_for?(:title) ? yield(:title) : "Untitled"
-    = stylesheet_link_tag     "application"
+    = stylesheet_link_tag     "honcho/application"
     = javascript_include_tag  "vendor/custom.modernizr"
     = csrf_meta_tags
   %body
-    = yield
+    %nav.top-bar
+      %ul.title-area
+        %li.name
+          %h1
+            = link_to "#{application_title}"
+      .top-bar-section
+        %ul.right
+          %li.divider
+          = nav_bar_options.each do |nav|
+            %li
+              = link_to "#{nav}"
+            %li.divider  
+    .row
+      .small-8.columns
+        = main_content
+      .small-4.columns
+        = side_bar
+
     = javascript_include_tag "application"
