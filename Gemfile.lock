@@ -2,7 +2,12 @@ PATH
   remote: .
   specs:
     honcho (0.0.1)
+      devise
+      haml-rails
       rails (~> 4.0.0)
+      simple_form
+      squeel
+      zurb-foundation
 
 GEM
   remote: https://rubygems.org/
@@ -119,8 +124,8 @@ PLATFORMS
 
 DEPENDENCIES
   debugger
-  haml-rails
   devise
+  haml-rails
   honcho!
   simple_form
   sqlite3
