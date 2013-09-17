@@ -5,6 +5,6 @@
 namespace :honcho do
   desc "Install Honcho in your application"
   task :install do
-    system 'rails g honcho:install'
+  	system 'rails g honcho:install'
   end
 end
