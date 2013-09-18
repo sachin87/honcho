@@ -15,6 +15,7 @@ group :development do
   gem 'debugger'
 end
 
+gem 'jquery-rails'
 gem 'zurb-foundation'
 gem 'haml-rails'
 gem 'simple_form'

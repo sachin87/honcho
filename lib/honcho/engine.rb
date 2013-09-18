@@ -15,7 +15,7 @@ module Honcho
   end
 
   def self.title(val)
-    self.configuration[:title] = val || "Admin Panel"
+    self.configuration[:title] = val
   end
 
   def self.auto_managed(val)
