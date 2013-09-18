@@ -3,7 +3,7 @@ module Honcho
 
     # Dashboard Title can be configured in config/honcho.rb
   	def application_title
-  		Honcho.configuration[:title] || "Admin Dashboard"
+  		Honcho.configuration[:title] || "Honcho"
   	end	
 
     # Resources, you want to manage unde admin panel, 

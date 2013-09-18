@@ -3,6 +3,8 @@ require_dependency "honcho/application_controller"
 module Honcho
   class AdminController < ApplicationController
 
+    helper_method :klass
+
     respond_to :html, :json
 
     before_action :load_resource, except: [:index, :new, :create]
@@ -39,11 +41,11 @@ module Honcho
       respond_with(@resource)
     end
 
-    private
+    def klass
+      @klass ||= model_name_symbolized.constantize
+    end
 
-      def klass
-        @klass ||= model_name_symbolized.constantize
-      end
+    private
 
       def model_name_symbolized
         @model_name ||= params[:controller].split('/').last.singularize.capitalize

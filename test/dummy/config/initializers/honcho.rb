@@ -3,17 +3,22 @@
 
 Honcho.config do |config|
 
-
   ########## Honcho Configuration #############
 
-  
+  # set title of admin panel
+
+  config.title "Admin Panel"
+
   # you can set the default theme of your application over here
   
   config.default_theme :blue
 
   # Set the resources which you need to be under admin panel
 
-  config.admin_models  [:post, :comment, :product]
+  config.admin_models  [:post, :comment]
 
+  # show auto maged columns on index pages
+
+  config.auto_managed false
 
 end
