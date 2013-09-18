@@ -1,10 +1,18 @@
 module Honcho
   module Admin
 
-    MAGIC_COLUMNS = ["id", "created_at", "updated_at"]
+    MAGIC_COLUMNS = ["id", "created_at", "updated_at"]    
 
     def self.included(base)
       base.extend ClassMethods
+      base.send(:include, InstanceMethods)
+    end
+
+    module InstanceMethods
+      # Instance method for showing attributes without magic_columns in Views
+      define_method(:table_attributes) do
+        self.attributes.reject!{|x| MAGIC_COLUMNS.include?(x)}
+      end
     end
 
     module ClassMethods
