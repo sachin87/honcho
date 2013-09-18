@@ -15,10 +15,10 @@
       %tr
         - resource.table_attributes.each do |k,v|
           %td= v
-        %td= link_to 'Show', honcho.send("#{resource_name.singularize.downcase}_path",resource.id)
+        %td= link_to 'Show', honcho.send("#{singularize_resource}_path",resource.id)
         %td= link_to 'Edit', resource_url("edit", resource)
-        %td= link_to 'Destroy', honcho.send("#{resource_name.singularize.downcase}_path", resource.id), method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Destroy', honcho.send("#{singularize_resource}_path", resource.id), method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to "New #{resource_name}", honcho.send("new_#{resource_name.singularize.downcase}_path")
+= link_to "New #{resource_name}", honcho.send("new_#{singularize_resource}_path")

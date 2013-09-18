@@ -1,10 +1,9 @@
 %p#notice= notice
-%p
-  %strong Title:
-  = @resource.title
-%p
-  %strong Body:
-  = @resource.body
+- @resource.attributes.each do |attribute|
+  %p
+    %strong
+      = "#{attribute[0].humanize}:"
+    = attribute[1]
 = link_to 'Edit', resource_url("edit", @resource)
 |
 = link_to 'Back', honcho.send("#{resource_name.downcase}_path")
