@@ -16,7 +16,7 @@ module Honcho
 
     def new
       @resource = klass.new
-      respond_with(@resource)
+      #respond_with([:honcho, @resource])
     end
 
     def create
@@ -26,7 +26,6 @@ module Honcho
     end
 
     def edit
-      respond_with(@resource)
     end
 
     alias_method :show, :edit

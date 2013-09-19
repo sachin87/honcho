@@ -1,4 +1,4 @@
-= simple_form_for(@resource) do |f|
+= simple_form_for([:honcho, @resource]) do |f|
   - f.object.class.table_attributes.each do |attribute|
     = f.input attribute.to_sym
   = f.button :submit
