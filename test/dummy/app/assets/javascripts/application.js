@@ -11,6 +11,4 @@
 // about supported directives.
 //
 // require honcho/application
-//= require jquery
-//= require jquery_ujs
 //= require_tree .

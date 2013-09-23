@@ -26,7 +26,6 @@ module Honcho
     self.configuration ||= {}
     if block_given?
       yield(self)
-      # block.call(self)
       create_controllers
       include_modules
     else
@@ -36,16 +35,16 @@ module Honcho
 
   private
 
-    def self.create_controllers
-      configuration[:admin_models].each do |klass|
-        controller_name = (klass.to_s.pluralize.capitalize + "Controller")
-        Honcho.const_set("#{controller_name}", Class.new(Honcho::AdminController))
-      end
+  def self.create_controllers
+    configuration[:admin_models].each do |klass|
+      controller_name = (klass.to_s.pluralize.capitalize + "Controller")
+      Honcho.const_set("#{controller_name}", Class.new(Honcho::AdminController))
     end
+  end
 
-    def self.include_modules
-      ActiveRecord::Base.send(:include, Honcho::Admin)
-    end
+  def self.include_modules
+    ActiveRecord::Base.send(:include, Honcho::Admin)
+  end
 
 end
 

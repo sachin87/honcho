@@ -44,7 +44,7 @@ module Honcho
     end 
 
     def resource_url(action, resource)
-      honcho.send("#{action}_#{singularize_resource}_path", resource.id)
+      honcho.send("#{action}_#{singularize_resource}_path", resource)
     end
 
     def singularize_resource

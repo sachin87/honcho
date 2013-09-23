@@ -5,24 +5,27 @@ module Honcho
 
     helper_method :klass
 
-    respond_to :html, :json
+    respond_to :html
 
     before_action :load_resource, except: [:index, :new, :create]
 
     def index
       @resources = klass.all
-      respond_with(@resources)
     end
 
     def new
       @resource = klass.new
-      #respond_with([:honcho, @resource])
     end
 
     def create
-      @resource = klass.new(params[@model_name])
-      @resource.save
-      respond_with(@resource)
+      @resource = klass.new(model_params)
+      respond_to do |format|
+        if @resource.save
+          format.html { redirect_to :index, notice: "#{klass.name} was successfully created." }
+        else
+          format.html { render action: :new }
+        end
+      end
     end
 
     def edit
@@ -31,13 +34,23 @@ module Honcho
     alias_method :show, :edit
 
     def update
-      @resource.update_attributes((params[@model_name]))
-      respond_with(@resource)
+      respond_to do |format|
+        if @resource.update_attributes(model_params)
+          format.html { redirect_to :index, notice: "#{klass.name} was successfully created." }
+        else
+          format.html { render action: :edit }
+        end
+      end
+
     end
 
     def destroy
-      @resource.destroy
-      respond_with(@resource)
+      if @resource.destroy
+        flash[:notice] = "#{klass.name} deleted successfully."
+      else
+        flash[:error] = "Error deleting #{klass.name}."
+      end
+      redirect_to :back
     end
 
     def klass
@@ -50,8 +63,24 @@ module Honcho
         @model_name ||= params[:controller].split('/').last.singularize.capitalize
       end
 
+      def params_attr
+        @params_attr ||= params[:controller].split('/').last.singularize.downcase
+      end
+
       def load_resource
-        @resource = klass.find params[:id]
+        @resource ||= klass.find params[:id]
+      end
+
+      def index_url
+        "/honcho/#{params[:controller].split('/').last}/"
+      end
+
+      def show_url
+        ["/honcho/#{params[:controller].split('/').last.singularize}/",load_resource]
+      end
+
+      def model_params
+        params.require(params_attr).permit( *klass.table_attributes)
       end
 
   end

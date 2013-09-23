@@ -9,7 +9,7 @@ module Honcho
 
     module InstanceMethods
       # Instance method for showing attributes without magic_columns in Views
-      define_method(:table_attributes) do
+      define_method(:object_attributes) do
         self.attributes.reject!{|x| MAGIC_COLUMNS.include?(x)}
       end
     end
