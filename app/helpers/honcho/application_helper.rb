@@ -1,6 +1,7 @@
 module Honcho
   module ApplicationHelper
 
+    # get browser title for the Honcho Dashboard
     def browser_title
       Honcho.configuration[:browser_title] || 'Honcho'
     end
@@ -10,7 +11,7 @@ module Honcho
   		Honcho.configuration[:title] || "Honcho"
   	end	
 
-    # Resources, you want to manage unde admin panel, 
+    # Resources, you want to manage under admin panel,
     # can be configured in config/honcho.rb
     def nav_bar_options
       options = []
@@ -43,14 +44,17 @@ module Honcho
   		yield :sidebar
   	end
 
+    # get resource name from string like 'honcho/posts' => Posts
     def resource_name
       params[:controller].split("/").last.capitalize
     end 
 
+    # create a path for a given resource and action
     def resource_url(action, resource)
       honcho.send("#{action}_#{singularize_resource}_path", resource)
     end
 
+    # singularize and lowercase the resultant of method: resource_name
     def singularize_resource
       resource_name.singularize.downcase
     end
