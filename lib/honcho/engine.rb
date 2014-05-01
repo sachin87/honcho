@@ -18,6 +18,10 @@ module Honcho
     self.configuration[:title] = val
   end
 
+  def self.browser_title(val)
+    self.configuration[:browser_title] = val
+  end
+
   def self.auto_managed(val)
     self.configuration[:auto_managed] = val
   end

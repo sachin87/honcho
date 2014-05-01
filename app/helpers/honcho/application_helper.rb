@@ -1,6 +1,10 @@
 module Honcho
   module ApplicationHelper
 
+    def browser_title
+      Honcho.configuration[:browser_title] || 'Honcho'
+    end
+
     # Dashboard Title can be configured in config/honcho.rb
   	def application_title
   		Honcho.configuration[:title] || "Honcho"
