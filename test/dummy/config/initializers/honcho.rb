@@ -5,6 +5,10 @@ Honcho.config do |config|
 
   ########## Honcho Configuration #############
 
+  # set browser title of admin panel
+
+  config.browser_title "Honcho"
+
   # set title of admin panel
 
   config.title "Admin Panel"
