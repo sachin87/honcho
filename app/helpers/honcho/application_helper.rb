@@ -59,5 +59,13 @@ module Honcho
       resource_name.singularize.downcase
     end
 
+    def input_type(form_object, attribute, type = :string)
+      type = type.to_sym
+      if type == :string
+        :string
+      elsif attribute.include?('_id')
+        :select
+      end
+    end
   end
 end
