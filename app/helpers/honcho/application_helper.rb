@@ -61,11 +61,21 @@ module Honcho
 
     def input_type(form_object, attribute, type = :string)
       type = type.to_sym
-      if type == :string
-        :string
-      elsif attribute.include?('_id')
+      if attribute.include?('_id')
         :select
+      else
+        type
       end
+    end
+
+    def input_options(form_object, attribute, type = :string)
+      t = input_type(form_object, attribute, type = :string)
+      options = {}
+      options[:as] = t
+      if t == :select
+        options[:collection] = Post.all
+      end
+      options
     end
   end
 end

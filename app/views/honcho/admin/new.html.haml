@@ -2,7 +2,7 @@
 
 = simple_form_for(@resource, url: honcho.posts_path, method: :post) do |f|
   - f.object.class.table_attributes.each do |attribute|
-    = f.input attribute.to_sym
+    = f.input attribute.to_sym, input_options(f, attribute)
   = f.button :submit
 
 = link_to 'Back', honcho.send("#{resource_name.downcase}_path")
