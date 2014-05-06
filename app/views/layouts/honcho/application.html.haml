@@ -26,7 +26,7 @@
           %li.divider
           - nav_bar_options.each do |nav|
             %li
-              = link_to "#{nav}", "#"
+              = link_to "#{nav}", eval("honcho.#{nav.downcase.  pluralize}_path")
             %li.divider  
     .row
       .small-8.columns

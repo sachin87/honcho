@@ -1,6 +1,6 @@
 %h1 
   = "Editing #{resource_name.singularize}"
-= simple_form_for(@resource, url: honcho.post_path, method: :patch) do |f|
+= simple_form_for(@resource, url: eval("honcho.#{@resource.class.name.downcase}_path(@resource)"), method: :put) do |f|
   - f.object.class.table_attributes.each do |attribute|
     = f.input attribute.to_sym, input_options(f, attribute)
   = f.button :submit
