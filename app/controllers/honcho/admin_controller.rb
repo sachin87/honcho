@@ -23,6 +23,7 @@ module Honcho
         if @resource.save
           format.html { redirect_to :index, notice: "#{klass.name} was successfully created." }
         else
+          flash.now[:alert] = "Error while creating #{klass}"
           format.html { render action: :new }
         end
       end
@@ -36,8 +37,9 @@ module Honcho
     def update
       respond_to do |format|
         if @resource.update_attributes(model_params)
-          format.html { redirect_to :index, notice: "#{klass.name} was successfully created." }
+          format.html { redirect_to :index, notice: "#{klass.name} was successfully updated." }
         else
+          flash.now[:alert] = "Error while updating #{klass}"
           format.html { render action: :edit }
         end
       end
@@ -46,9 +48,9 @@ module Honcho
 
     def destroy
       if @resource.destroy
-        flash[:notice] = "#{klass.name} deleted successfully."
+        flash[:waring] = "#{klass.name} deleted successfully."
       else
-        flash[:error] = "Error deleting #{klass.name}."
+        flash[:info] = "Error deleting #{klass.name}."
       end
       redirect_to :back
     end

@@ -30,6 +30,11 @@
             %li.divider  
     .row
       .small-8.columns
+        - flash.each do |key, message|
+          %div{ class: "alert-box #{key} radius", "data-alert" => ""}
+            = message
+            = link_to("#", class: :close) do
+              x
         = yield #main_content
       .small-4.columns
         =# side_bar
