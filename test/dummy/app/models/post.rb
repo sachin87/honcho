@@ -3,9 +3,4 @@ class Post < ActiveRecord::Base
 
   validates :title, :body , presence: true
 
-
-  def valid?(ccc)
-    false
-  end
-
 end

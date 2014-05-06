@@ -10,7 +10,7 @@ module Honcho
     before_action :load_resource, except: [:index, :new, :create]
 
     def index
-      @resources = klass.all
+      @resources = klass.page params[:page]
     end
 
     def new
