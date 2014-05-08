@@ -20,6 +20,14 @@ module Honcho
         define_method(:table_attributes) do
           self.attribute_names - ( Honcho.configuration[:auto_managed] ? [] : MAGIC_COLUMNS)
         end
+
+        def search(query)
+          #where do
+          #  (released_at <= Time.zone.now) &
+          #      ((discontinued_at == nil) | (discontinued_at > Time.zone.now)) &
+          #      (stock >= my{low_stock}) & (name =~ "%#{query}%")
+          #end
+        end
       end
     end
 

@@ -1,0 +1,7 @@
+= form_tag eval("honcho.#{klass.name.downcase.pluralize}_path"), :method => 'get' do
+  %p
+    - klass.table_attributes.each do |attribute|
+      = label_tag attribute, attribute.humanize
+      = text_field_tag "search[#{attribute}]", nil
+    = submit_tag "Search", name: nil
+
