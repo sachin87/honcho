@@ -60,10 +60,10 @@ module Honcho
     end
 
     def input_type(form_object, attribute, type = :string)
-      type = type.to_sym
+      type = @resource.column_for_attribute(attribute).type
       if attribute.include?('_id')
         :select
-      else
+      elsif type == 'boolean'
         type
       end
     end

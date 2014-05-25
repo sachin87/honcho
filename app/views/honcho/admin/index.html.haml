@@ -1,11 +1,12 @@
 .row
   .large-5.columns
-    Search #{klass}
+    %h3
+      Search
     %br
     = render 'search'
 
   .large-7.columns
-    %h1
+    %h2
       = "Listing #{resource_name}"
     %table
       %thead
@@ -14,9 +15,9 @@
           - klass.table_attributes.each do |attribute|
             %th
               = attribute.humanize
-          %th Show #{klass.name}
-          %th Edit #{klass.name}
-          %th Destroy #{klass.name}
+          %th Show
+          %th Edit
+          %th Destroy
 
       %tbody
         - @resources.each do |resource|
@@ -31,4 +32,4 @@
 
     = paginate @resources
 
-    = link_to "Create New #{resource_name}", honcho.send("new_#{singularize_resource}_path"), class: 'button'
+    = link_to "Create New #{resource_name}", honcho.send("new_#{singularize_resource}_path"), class: 'button round small'

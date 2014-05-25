@@ -3,14 +3,6 @@
 .row
   .small-8
     = simple_form_for(@resource, url: eval("honcho.#{@resource.class.name.downcase.pluralize}_path"), method: :post) do |f|
-      - f.object.class.table_attributes.each do |attribute|
-        .row
-          .small-3.columns
-            = f.label attribute, attribute.humanize, class: 'error'
-          .small-9.columns
-            = f.input attribute.to_sym, input_options(f, attribute)
-            %small.error
-              Invalid entry
-      = f.button :submit, class: 'button small round'
+      = render 'form', f: f
 
     = link_to 'Back', honcho.send("#{resource_name.downcase}_path"), class: 'button small round'
