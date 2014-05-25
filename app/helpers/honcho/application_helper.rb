@@ -72,6 +72,8 @@ module Honcho
       t = input_type(form_object, attribute, type = :string)
       options = {}
       options[:as] = t
+      options[:label] = false
+      options[:class] = 'error'
       if t == :select
         options[:collection] = Post.all
       end
