@@ -10,11 +10,11 @@ module Honcho
     before_action :load_resource, except: [:index, :new, :create]
 
     def index
-      #@resources = if params[:search].present?
-      #  klass.search(params[:search]).page params[:page]
-      #else
-      @resources = klass.page params[:page]
-    #  end
+      @resources = if params[:search].present?
+        klass.search(params[:search]).page params[:page]
+      else
+        klass.page params[:page]
+      end
     end
 
     def new
