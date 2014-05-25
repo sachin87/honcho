@@ -1,5 +1,5 @@
-%h1 
-  = "Editing #{resource_name.singularize}"
+%h2 Editing #{resource_name.singularize}
+
 .row
   .small-8
     = simple_form_for(@resource, url: eval("honcho.#{@resource.class.name.downcase}_path(@resource)"), method: :put) do |f|

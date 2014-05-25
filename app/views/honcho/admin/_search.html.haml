@@ -1,6 +1,6 @@
 .row
   .small-8
-    = form_tag eval("honcho.#{klass.name.downcase.pluralize}_path"), :method => 'get' do
+    = form_tag eval("honcho.#{klass.name.downcase.pluralize}_path"), method: :get do
       - klass.table_attributes.each do |attribute|
         .small-8
           .row
