@@ -1,9 +1,7 @@
 .row
-  .small-8
+  .small-12
     = form_tag eval("honcho.#{klass.name.downcase.pluralize}_path"), method: :get do
       - klass.table_attributes.each do |attribute|
-        .small-8
-          .row
-            .small-12.columns
-              = text_field_tag "search[#{attribute}]", nil, placeholder: "Enter #{attribute} to search for"
+        .row
+          = text_field_tag "search[#{attribute}]", params[:search] && params[:search][attribute], placeholder: "Enter #{attribute} to search for"
       = submit_tag "Search", name: nil, class: 'button small round'
