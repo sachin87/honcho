@@ -68,8 +68,9 @@ module Honcho
       redirect_to :back
     end
 
-    def klass
-      @klass ||= model_name_symbolized.constantize
+    def import
+      klass.import(params[:file])
+      redirect_to root_url, notice: "#{klass.name.pluralize} imported."
     end
 
     private

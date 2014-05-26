@@ -6,6 +6,7 @@ Honcho::Engine.routes.draw do
     resources klass.to_s.pluralize.to_sym do
       collection do
         get 'page/:page', action: :index
+        post :import
       end
     end
   end
