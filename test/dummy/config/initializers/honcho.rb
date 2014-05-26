@@ -25,4 +25,8 @@ Honcho.config do |config|
 
   config.auto_managed false
 
+  # show import csv/excel form for following resources
+
+  config.import_form_for [:post]
+
 end

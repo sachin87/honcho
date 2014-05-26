@@ -1,4 +1,4 @@
-- Honcho.configuration[:admin_models].each do |klass|
+- Honcho.configuration[:import_form_for].each do |klass|
   %h3 Import #{klass.to_s}
 
   = form_tag honcho.send("import_#{klass.to_s.pluralize}_path"), multipart: true do

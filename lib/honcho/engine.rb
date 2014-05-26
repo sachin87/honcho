@@ -26,6 +26,10 @@ module Honcho
     self.configuration[:auto_managed] = val
   end
 
+  def self.import_form_for(val)
+    self.configuration[:import_form_for] = val
+  end
+
   def self.config
     self.configuration ||= {}
     if block_given?
