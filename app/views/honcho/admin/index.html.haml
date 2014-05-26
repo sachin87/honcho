@@ -8,6 +8,9 @@
   .large-7.columns
     %h2
       = "Listing #{resource_name}"
+    Download:
+    = link_to "CSV", honcho.send("#{resource_name.downcase}_path", format: "csv")  |
+    = link_to "Excel", honcho.send("#{resource_name.downcase}_path", format: "xls")
     %table
       %thead
         %tr

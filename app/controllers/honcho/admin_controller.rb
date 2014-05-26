@@ -10,10 +10,19 @@ module Honcho
     before_action :load_resource, except: [:index, :new, :create]
 
     def index
-      @resources = if params[:search].present?
-        klass.search(params[:search]).page params[:page]
-      else
-        klass.page params[:page]
+      respond_to do |format|
+        format.html do
+          @resources = if params[:search].present?
+                         klass.search(params[:search]).page params[:page]
+                       else
+                         klass.page params[:page]
+                       end
+        end
+        format.csv do
+          @resources = klass.all
+          send_data @resources.to_csv
+        end
+        format.xls{ @resources = klass.all }
       end
     end
 
