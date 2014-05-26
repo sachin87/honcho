@@ -11,6 +11,7 @@
     %table
       %thead
         %tr
+          %th=check_box_tag :select_all , true, false, id: 'selectAll'
           %th ID
           - klass.table_attributes.each do |attribute|
             %th
@@ -22,6 +23,7 @@
       %tbody
         - @resources.each do |resource|
           %tr
+            %td=check_box_tag 'resource', resource.id, false
             %td=resource.id
             - resource.object_attributes.each do |k,v|
               %td= v
