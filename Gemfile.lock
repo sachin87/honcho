@@ -4,6 +4,7 @@ PATH
     honcho (0.0.1)
       devise
       haml-rails
+      kaminari
       rails (~> 4.0.0)
       roo
       simple_form
@@ -64,9 +65,6 @@ GEM
       railties (>= 3.1, < 4.1)
     hike (1.2.3)
     i18n (0.6.5)
-    jquery-rails (3.0.4)
-      railties (>= 3.0, < 5.0)
-      thor (>= 0.14, < 2.0)
     kaminari (0.15.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -99,7 +97,7 @@ GEM
       activesupport (= 4.0.0)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.1.0)
+    rake (10.3.1)
     roo (1.13.2)
       nokogiri
       rubyzip
@@ -142,12 +140,5 @@ PLATFORMS
 
 DEPENDENCIES
   debugger
-  devise
-  haml-rails
   honcho!
-  jquery-rails
-  kaminari
-  simple_form
   sqlite3
-  squeel
-  zurb-foundation

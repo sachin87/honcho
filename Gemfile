@@ -10,16 +10,3 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
-# To use debugger
-group :development do
-  gem 'debugger'
-end
-
-gem 'jquery-rails'
-gem 'zurb-foundation'
-gem 'haml-rails'
-gem 'simple_form'
-gem 'devise'
-gem 'squeel'
-gem 'kaminari'
-
