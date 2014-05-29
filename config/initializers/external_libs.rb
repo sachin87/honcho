@@ -1,5 +1,0 @@
-require 'csv'
-require 'iconv'
-require 'kaminari'
-require 'simple_form'
-require 'squeel'

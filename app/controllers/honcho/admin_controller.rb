@@ -5,7 +5,7 @@ module Honcho
 
     helper_method :klass
 
-    respond_to :html
+    respond_to :html, :xml
 
     before_action :load_resource, except: [:index, :new, :create]
 
@@ -15,7 +15,7 @@ module Honcho
           @resources = if params[:search].present?
                          klass.search(params[:search]).page params[:page]
                        else
-                         klass.page params[:page]
+                         klass.order("created_at DESC").page params[:page]
                        end
         end
         format.csv do
@@ -23,6 +23,10 @@ module Honcho
           send_data @resources.to_csv
         end
         format.xls{ @resources = klass.all }
+        format.xml do
+          @resources = klass.all
+          render @resources
+        end
       end
     end
 

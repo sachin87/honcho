@@ -19,7 +19,7 @@ Honcho.config do |config|
 
   # Set the resources which you need to be under admin panel
 
-  config.admin_models  [:post]
+  config.admin_models  [:post, :comment]
 
   # show auto maged columns on index pages
 

@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'squeel'
   s.add_dependency  'roo'
   s.add_dependency  'kaminari'
+  s.add_dependency  'jquery-rails'
 
   s.add_development_dependency  'debugger'
   s.add_development_dependency 'sqlite3'

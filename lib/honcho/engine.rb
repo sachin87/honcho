@@ -1,3 +1,11 @@
+require 'csv'
+require 'iconv'
+require 'simple_form'
+require 'haml-rails'
+require 'squeel'
+require 'kaminari'
+require 'jquery-rails'
+
 module Honcho
 
   mattr_accessor :configuration
