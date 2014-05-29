@@ -38,6 +38,10 @@ module Honcho
     self.configuration[:import_form_for] = val
   end
 
+  def self.html5_validations(val)
+    self.configuration[:html5_validations] = val
+  end
+
   def self.config
     self.configuration ||= {}
     if block_given?

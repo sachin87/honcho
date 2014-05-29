@@ -74,10 +74,19 @@ module Honcho
       options[:as] = t
       options[:label] = false
       options[:class] = 'error'
+      options[:required] = Honcho.configuration[:html5_validations]
       if t == :select
         options[:collection] = Post.all
       end
       options
+    end
+
+    def label_options(attribute, f)
+      value = [attribute.humanize]
+      if f.object.errors[attribute].present?
+        value << {class: 'error'}
+      end
+      value
     end
   end
 end

@@ -29,4 +29,8 @@ Honcho.config do |config|
 
   config.import_form_for [:post]
 
+  # support html5 validations
+
+  config.html5_validations false
+
 end
