@@ -13,6 +13,9 @@
     = link_to "Excel", honcho.send("#{resource_name.downcase}_path", format: "xls")
     = link_to "XML", honcho.send("#{resource_name.downcase}_path", format: "xml")
     = link_to "JSON", honcho.send("#{resource_name.downcase}_path", format: "json")
+
+    = paginate @resources
+
     %table
       %thead
         %tr
