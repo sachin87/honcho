@@ -5,6 +5,7 @@ require 'haml-rails'
 require 'squeel'
 require 'kaminari'
 require 'jquery-rails'
+require 'roo'
 
 module Honcho
 

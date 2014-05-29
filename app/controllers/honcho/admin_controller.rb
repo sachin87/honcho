@@ -7,7 +7,7 @@ module Honcho
 
     respond_to :html, :xml
 
-    before_action :load_resource, except: [:index, :new, :create]
+    before_action :load_resource, except: [:index, :new, :create, :import]
 
     def index
       respond_to do |format|
