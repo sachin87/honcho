@@ -27,7 +27,7 @@
           - nav_bar_options.each do |nav|
             %li
               = link_to "#{nav}", eval("honcho.#{nav.downcase.pluralize}_path")
-            %li.divider  
+            %li.divider
     .row
       .large-12
         - flash.each do |key, message|

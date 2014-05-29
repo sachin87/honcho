@@ -25,7 +25,11 @@ module Honcho
         format.xls{ @resources = klass.all }
         format.xml do
           @resources = klass.all
-          render @resources
+          render xml: @resources
+        end
+        format.json do
+          @resources = klass.all
+          render json: @resources
         end
       end
     end
