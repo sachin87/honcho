@@ -63,8 +63,10 @@ module Honcho
       type = @resource.column_for_attribute(attribute).type
       if attribute.include?('_id')
         :select
-      elsif type == 'boolean'
+      elsif type == :boolean
         type
+      elsif type == :datetime
+        :datetime
       end
     end
 

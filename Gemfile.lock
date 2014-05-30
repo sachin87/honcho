@@ -144,6 +144,6 @@ PLATFORMS
 
 DEPENDENCIES
   debugger
+  devise
   honcho!
-  kaminari
   sqlite3
