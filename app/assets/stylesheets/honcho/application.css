@@ -17,16 +17,16 @@
     width: 100%;
 }
 
-.pretty th .current {
+th .current {
     padding-right: 12px;
     background-repeat: no-repeat;
     background-position: right center;
 }
 
-.pretty th .asc {
+th .asc {
     background-image: url(up_arrow.gif);
 }
 
-.pretty th .desc {
+th .desc {
     background-image: url(down_arrow.gif);
 }
