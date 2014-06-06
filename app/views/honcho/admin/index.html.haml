@@ -20,10 +20,10 @@
       %thead
         %tr
           %th=check_box_tag :select_all , true, false, id: 'selectAll'
-          %th ID
+          %th= sortable 'id'
           - klass.table_attributes.each do |attribute|
             %th
-              = sortable attribute.humanize
+              = sortable attribute
           %th Show
           %th Edit
           %th Destroy

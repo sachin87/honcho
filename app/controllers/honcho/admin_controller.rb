@@ -105,7 +105,7 @@ module Honcho
       end
 
       def sort_column
-         klass.column_names.include?(params[:sort]) ? params[:sort] : 'name'
+         klass.column_names.include?(params[:sort]) ? params[:sort] : 'id'
       end
 
       def sort_direction
