@@ -3,7 +3,7 @@ require_dependency 'honcho/application_controller'
 module Honcho
   class AdminController < ApplicationController
 
-    helper_method :klass
+    helper_method :klass, :sort_column, :sort_direction
 
     respond_to :html, :xml
 
@@ -13,23 +13,20 @@ module Honcho
       respond_to do |format|
         format.html do
           @resources = if params[:search].present?
-                         klass.search(params[:search]).page params[:page]
+                         klass.search(params[:search]).page(params[:page])
                        else
-                         klass.order("created_at DESC").page params[:page]
+                         klass.order(sort_column + " " + sort_direction).page(params[:page])
                        end
         end
         format.csv do
-          @resources = klass.all
-          send_data @resources.to_csv
+          send_data resources.to_csv
         end
-        format.xls{ @resources = klass.all }
+        format.xls{ resources }
         format.xml do
-          @resources = klass.all
-          render xml: @resources
+          render xml: resources
         end
         format.json do
-          @resources = klass.all
-          render json: @resources
+          render json: resources
         end
       end
     end
@@ -105,6 +102,18 @@ module Honcho
 
       def model_params
         params.require(params_attr).permit( *klass.table_attributes)
+      end
+
+      def sort_column
+         klass.column_names.include?(params[:sort]) ? params[:sort] : 'name'
+      end
+
+      def sort_direction
+        %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+      end
+
+      def resources
+        @resources ||= klass.order(sort_column + " " + sort_direction).all
       end
 
   end
