@@ -21,7 +21,7 @@ Honcho.config do |config|
 
   config.admin_models  [:post, :comment, :user]
 
-  # show auto maged columns on index pages
+  # show auto managed columns on index pages
 
   config.auto_managed false
 
@@ -32,5 +32,9 @@ Honcho.config do |config|
   # support html5 validations
 
   config.html5_validations false
+
+  # support download formats
+
+  config.supported_formats :all
 
 end

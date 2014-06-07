@@ -43,6 +43,10 @@ module Honcho
     self.configuration[:html5_validations] = val
   end
 
+  def self.supported_formats(val)
+    self.configuration[:supported_formats] = val
+  end
+
   def self.config
     self.configuration ||= {}
     if block_given?

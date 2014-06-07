@@ -9,10 +9,8 @@
     %h2
       = "Listing #{resource_name}"
     Download:
-    = link_to "CSV", honcho.send("#{resource_name.downcase}_path", format: "csv")
-    = link_to "Excel", honcho.send("#{resource_name.downcase}_path", format: "xls")
-    = link_to "XML", honcho.send("#{resource_name.downcase}_path", format: "xml")
-    = link_to "JSON", honcho.send("#{resource_name.downcase}_path", format: "json")
+    - download_links.each do |format|
+      = link_to format.upcase, honcho.send("#{resource_name.downcase}_path", format: format.downcase == 'excel' ? 'xls' : format.downcase)
 
     = paginate @resources
 
