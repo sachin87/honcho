@@ -3,7 +3,7 @@ require_dependency 'honcho/application_controller'
 module Honcho
   class AdminController < ApplicationController
 
-    helper_method :klass, :sort_column, :sort_direction
+    helper_method :klass, :sort_column, :sort_direction, :download_links
 
     respond_to :html, :xml
 
@@ -11,22 +11,9 @@ module Honcho
 
     def index
       respond_to do |format|
-        format.html do
-          @resources = if params[:search].present?
-                         klass.search(params[:search]).page(params[:page])
-                       else
-                         klass.order(sort_column + " " + sort_direction).page(params[:page])
-                       end
-        end
-        format.csv do
-          send_data resources.to_csv
-        end
-        format.xls{ resources }
-        format.xml do
-          render xml: resources
-        end
-        format.json do
-          render json: resources
+        download_links.each do |format_type|
+          block = lambda { eval "get_response_for_#{format_type.downcase}_request" }
+          format.send(format_type.downcase.to_sym, &block)
         end
       end
     end
@@ -116,5 +103,40 @@ module Honcho
         @resources ||= klass.order(sort_column + " " + sort_direction).all
       end
 
+      def get_response_for_html_request
+        @resources = if params[:search].present?
+                       klass.search(params[:search]).page(params[:page])
+                     else
+                       klass.order(sort_column + " " + sort_direction).page(params[:page])
+                     end
+      end
+
+      def get_response_for_csv_request
+        send_data resources.to_csv
+      end
+
+      def get_response_for_xls_request
+        resources
+      end
+
+      def get_response_for_xml_request
+        render xml: resources
+      end
+
+      def get_response_for_json_request
+        render json: resources
+      end
+
+      def download_links
+        formats = [ "CSV", "XLS", "XML", "JSON"]
+        value = Honcho.configuration[:supported_formats]
+        if value.to_sym == :all
+          formats
+        elsif value.nil?
+          []
+        else
+          value
+        end
+      end
   end
 end

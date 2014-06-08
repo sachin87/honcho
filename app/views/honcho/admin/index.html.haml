@@ -10,7 +10,7 @@
       = "Listing #{resource_name}"
     Download:
     - download_links.each do |format|
-      = link_to format.upcase, honcho.send("#{resource_name.downcase}_path", format: format.downcase == 'excel' ? 'xls' : format.downcase)
+      = link_to format.upcase, honcho.send("#{resource_name.downcase}_path", format: format.downcase)
 
     = paginate @resources
 

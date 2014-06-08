@@ -98,17 +98,5 @@ module Honcho
       link_to title, honcho.send("#{resource_name.downcase}_path", {sort: column, direction: direction}), {class: css_class}
     end
 
-    def download_links
-      formats = [ "CSV", "Excel", "XML", "JSON"]
-      value = Honcho.configuration[:supported_formats]
-      if value.to_sym == :all
-        [ "CSV", "Excel", "XML", "JSON"]
-      elsif value.nil?
-        []
-      else
-        value
-      end
-    end
-
   end
 end
