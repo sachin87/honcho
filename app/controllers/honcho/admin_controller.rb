@@ -11,9 +11,12 @@ module Honcho
 
     def index
       respond_to do |format|
-        download_links.each do |format_type|
-          block = lambda { eval "get_response_for_#{format_type.downcase}_request" }
-          format.send(format_type.downcase.to_sym, &block)
+        if params[:format].blank?
+          block = lambda { get_response_for_html_request }
+          format.send(:html, &block)
+        else
+          block = lambda { eval "get_response_for_#{params[:format]}_request" }
+          format.send(params[:format], &block)
         end
       end
     end
