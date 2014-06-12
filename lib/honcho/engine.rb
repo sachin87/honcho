@@ -1,5 +1,4 @@
 require 'csv'
-require 'iconv'
 require 'simple_form'
 require 'haml-rails'
 require 'squeel'
