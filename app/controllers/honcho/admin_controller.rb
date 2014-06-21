@@ -29,7 +29,7 @@ module Honcho
       @resource = klass.new(model_params)
       respond_to do |format|
         if @resource.save
-          format.html { redirect_to show_url, notice: "#{klass.name} was successfully created." }
+          format.html { redirect_to honcho.post_path(@resource), notice: "#{klass.name} was successfully created." }
         else
           flash.now[:alert] = "Error while creating #{klass}"
           format.html { render action: :new }
@@ -45,7 +45,7 @@ module Honcho
     def update
       respond_to do |format|
         if @resource.update_attributes(model_params)
-          format.html { redirect_to show_url, notice: "#{klass.name} was successfully updated." }
+          format.html { redirect_to honcho.post_path(@resource), notice: "#{klass.name} was successfully updated." }
         else
           flash.now[:alert] = "Error while updating #{klass}"
           format.html { render action: :edit }
