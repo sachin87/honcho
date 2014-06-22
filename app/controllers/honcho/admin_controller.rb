@@ -115,7 +115,7 @@ module Honcho
       end
 
       def get_response_for_csv_request
-        send_data resources.to_csv
+        send_data klass.to_csv(resources)
       end
 
       def get_response_for_xls_request
