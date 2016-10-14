@@ -1,7 +1,6 @@
 require 'csv'
 require 'simple_form'
 require 'haml-rails'
-require 'squeel'
 require 'kaminari'
 require 'jquery-rails'
 require 'roo'

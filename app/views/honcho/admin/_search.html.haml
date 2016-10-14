@@ -1,7 +1,10 @@
-.row
-  .small-12
+%div.ui.segment
+  %h3
+    = 'Search'
+  %div.item
     = form_tag eval("honcho.#{klass.name.downcase.pluralize}_path"), method: :get do
       - klass.table_attributes.each do |attribute|
-        .row
+        %div.ui.icon.input
           = text_field_tag "search[#{attribute}]", params[:search] && params[:search][attribute], placeholder: "Enter #{attribute} to search for"
-      = submit_tag 'Search', name: nil, class: 'button small round'
+          %i.circular.search.link.icon
+      = submit_tag 'Search', name: nil, class: 'ui primary button'

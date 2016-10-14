@@ -28,7 +28,6 @@ module Honcho
     def create
       @resource = klass.new(model_params)
       respond_to do |format|
-        debugger
         if @resource.save
           format.html { redirect_to honcho.send("#{singularize_resource}_path",@resource.id), notice: "#{klass.name} was successfully created." }
         else
@@ -141,6 +140,11 @@ module Honcho
         else
           value
         end
+      end
+
+      def singularize_resource
+        byebug
+        puts 'abvd'
       end
   end
 end
