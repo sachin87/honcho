@@ -28,7 +28,7 @@ module Honcho
       @resource = klass.new(model_params)
       respond_to do |format|
         if @resource.save
-          format.html { redirect_to honcho.send("#{singularize_resource}_path",@resource.id), notice: "#{klass.name} was successfully created." }
+          format.html { redirect_to honcho.send("#{model_name}_path",@resource.id), notice: "#{klass.name} was successfully created." }
         else
           flash.now[:alert] = "Error while creating #{klass}"
           format.html { render action: :new }
@@ -44,7 +44,7 @@ module Honcho
     def update
       respond_to do |format|
         if @resource.update_attributes(model_params)
-          format.html { redirect_to honcho.send("#{singularize_resource}_path",@resource.id), notice: "#{klass.name} was successfully updated." }
+          format.html { redirect_to honcho.send("#{model_name}_path",@resource.id), notice: "#{klass.name} was successfully updated." }
         else
           flash.now[:alert] = "Error while updating #{klass}"
           format.html { render action: :edit }
@@ -69,7 +69,7 @@ module Honcho
     private
 
       def model_name_symbolized
-        @model_name ||= params[:controller].split('/').last.singularize.capitalize
+        @model_name_symbolized ||= model_name.capitalize
       end
 
       def params_attr
@@ -140,8 +140,8 @@ module Honcho
         end
       end
 
-      def singularize_resource
-        model_name_symbolized.downcase.to_s
+      def model_name
+        @model_name ||= params[:controller].split('/').last.singularize
       end
   end
 end
