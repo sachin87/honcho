@@ -4,37 +4,43 @@
 /[if IE 7 ] <html class="ie7" lang="en">
 /[if IE 8 ] <html class="ie8" lang="en">
 / [if (gte IE 9)|!(IE)]><!
-%html{:lang => "en"}
+%html{ lang: 'en' }
   / <![endif]
   %head
-    %meta{:charset => "utf-8"}/
+    %meta{ charset: 'utf-8' }/
     / Uncomment to make IE8 render like IE7
     / <meta http-equiv="X-UA-Compatible" content="IE=7" />
     / Set the viewport width to device width for mobile
-    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{ content: 'width=device-width, initial-scale=1.0', name: 'viewport' }/
     %title= content_for?(:title) ? yield(:title) : browser_title
-    = stylesheet_link_tag     "honcho/application"
+    = stylesheet_link_tag 'honcho/application'
     = csrf_meta_tags
   %body.pushable
-    %div.ui.left.vertical.stackable.secondary.menu.inverted.sidebar
-      %div.item
+    .ui.left.vertical.stackable.secondary.menu.inverted.sidebar
+      .item
         %h1
-          = "#{application_title}"
+          = application_title.to_s
       - nav_bar_options.each do |nav|
-        %div.item
+        .item
           = link_to "#{nav}", eval("honcho.#{nav.downcase.pluralize}_path")
-    %div.pusher
-      %div.full.height
-        %div.ui.stackable.menu
-          %div.item
+    .pusher
+      .full.height
+        .ui.stackable.menu
+          .item
             %h1
-              = link_to "#{application_title}", "#", onclick: "$('.ui.sidebar').sidebar('setting', 'transition', 'scale down').sidebar('toggle');"
-      %div.ui.main.container
-        - flash.each do |key, message|
-          %div{ class: "alert-box #{key} radius", "data-alert" => ""}
-            = message
-            = link_to("#", class: :close) do
-              x
-        = yield
+              = link_to application_title.to_s, '#', onclick: "$('.ui.sidebar').sidebar('setting', 'transition', 'scale down').sidebar('toggle');"
+        .ui.main.container
+          - flash.each do |_key, message|
+            %div{ class: 'ui inline cookie nag #{key}', 'data-alert' => '' }
+              %span.title
+                = message
+              %i{ class: 'close icon', onclick: "$('.cookie.nag').nag('clear');" }
+          = yield
 
     = javascript_include_tag 'honcho/application'
+:javascript
+  $('.cookie.nag')
+  .nag({
+    key      : 'accepts-cookies',
+    value    : true
+  });
