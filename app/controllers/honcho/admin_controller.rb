@@ -141,7 +141,7 @@ module Honcho
       end
 
       def singularize_resource
-        puts 'abvd'
+        model_name_symbolized.downcase.to_s
       end
   end
 end
