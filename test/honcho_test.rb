@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class HonchoTest < ActiveSupport::TestCase
+class Honcho::Test < ActiveSupport::TestCase
   test "truth" do
     assert_kind_of Module, Honcho
   end
