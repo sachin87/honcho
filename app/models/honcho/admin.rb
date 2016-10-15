@@ -14,10 +14,10 @@ module Honcho
     end
 
     Honcho.configuration[:admin_models].each do |model|
-      klass = model.to_s.capitalize.constantize
+      klass = model.to_s.camelize.constantize
       class << klass
         define_method(:table_attributes) do
-          self.attribute_names - (Honcho.configuration[:auto_managed] ? [] : MAGIC_COLUMNS)
+          (self.attribute_names + self.ignored_columns) - (Honcho.configuration[:auto_managed] ? [] : MAGIC_COLUMNS)
         end
 
         def search(query)

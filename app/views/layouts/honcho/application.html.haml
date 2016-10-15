@@ -29,7 +29,7 @@
           %div.item
             %h1
               = link_to "#{application_title}", "#", onclick: "$('.ui.sidebar').sidebar('setting', 'transition', 'scale down').sidebar('toggle');"
-      %div.ui.container
+      %div.ui.main.container
         - flash.each do |key, message|
           %div{ class: "alert-box #{key} radius", "data-alert" => ""}
             = message

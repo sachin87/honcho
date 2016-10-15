@@ -4,4 +4,4 @@
     = simple_form_for(@resource, url: eval("honcho.#{@resource.class.name.downcase.pluralize}_path"), method: :post) do |f|
       = render 'form', f: f
 
-    = link_to 'Back', honcho.send("#{resource_name.downcase}_path"), class: 'ui primary button'
+  = link_to 'Back', honcho.send("#{resource_name.downcase}_path"), class: 'ui primary button'
