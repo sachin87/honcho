@@ -15,21 +15,21 @@
     %title= content_for?(:title) ? yield(:title) : browser_title
     = stylesheet_link_tag     "honcho/application"
     = csrf_meta_tags
-  %body
-    %nav.top-bar
-      %ul.title-area
-        %li.name
-          %h1
-            = link_to "#{application_title}", "#"
-      .top-bar-section
-        %ul.right
-          %li.divider
-          - nav_bar_options.each do |nav|
-            %li
-              = link_to "#{nav}", eval("honcho.#{nav.downcase.pluralize}_path")
-            %li.divider
-    .row
-      .large-12
+  %body.pushable
+    %div.ui.left.vertical.stackable.secondary.menu.inverted.sidebar
+      %div.item
+        %h1
+          = "#{application_title}"
+      - nav_bar_options.each do |nav|
+        %div.item
+          = link_to "#{nav}", eval("honcho.#{nav.downcase.pluralize}_path")
+    %div.pusher
+      %div.full.height
+        %div.ui.stackable.menu
+          %div.item
+            %h1
+              = link_to "#{application_title}", "#", onclick: "$('.ui.sidebar').sidebar('setting', 'transition', 'scale down').sidebar('toggle');"
+      %div.ui.container
         - flash.each do |key, message|
           %div{ class: "alert-box #{key} radius", "data-alert" => ""}
             = message
@@ -38,4 +38,3 @@
         = yield
 
     = javascript_include_tag 'honcho/application'
-    = javascript_include_tag  'vendor/custom.modernizr'

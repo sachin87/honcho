@@ -2,7 +2,6 @@ require_dependency 'honcho/application_controller'
 
 module Honcho
   class AdminController < ApplicationController
-
     helper_method :klass, :sort_column, :sort_direction, :download_links
 
     respond_to :html, :xml
@@ -12,10 +11,10 @@ module Honcho
     def index
       respond_to do |format|
         if params[:format].blank?
-          block = lambda { get_response_for_html_request }
+          block = -> { get_response_for_html_request }
           format.send(:html, &block)
         else
-          block = lambda { eval "get_response_for_#{params[:format]}_request" }
+          block = -> { eval "get_response_for_#{params[:format]}_request" }
           format.send(params[:format], &block)
         end
       end
@@ -28,7 +27,6 @@ module Honcho
     def create
       @resource = klass.new(model_params)
       respond_to do |format|
-        debugger
         if @resource.save
           format.html { redirect_to honcho.send("#{singularize_resource}_path",@resource.id), notice: "#{klass.name} was successfully created." }
         else
@@ -52,7 +50,6 @@ module Honcho
           format.html { render action: :edit }
         end
       end
-
     end
 
     def destroy
@@ -88,30 +85,30 @@ module Honcho
       end
 
       def show_url
-        ["/honcho/#{params[:controller].split('/').last.singularize}/",load_resource]
+        ["/honcho/#{params[:controller].split('/').last.singularize}/", load_resource]
       end
 
       def model_params
-        params.require(params_attr).permit( *klass.table_attributes)
+        params.require(params_attr).permit(*klass.table_attributes)
       end
 
       def sort_column
-         klass.column_names.include?(params[:sort]) ? params[:sort] : 'id'
+        klass.column_names.include?(params[:sort]) ? params[:sort] : klass.primary_key
       end
 
       def sort_direction
-        %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+        %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
       end
 
       def resources
-        @resources ||= klass.order(sort_column + " " + sort_direction).all
+        @resources ||= klass.order(sort_column + ' ' + sort_direction).all
       end
 
       def get_response_for_html_request
         @resources = if params[:search].present?
                        klass.search(params[:search]).page(params[:page])
                      else
-                       klass.order(sort_column + " " + sort_direction).page(params[:page])
+                       klass.order(sort_column + ' ' + sort_direction).page(params[:page])
                      end
       end
 
@@ -132,7 +129,7 @@ module Honcho
       end
 
       def download_links
-        formats = [ "CSV", "XLS", "XML", "JSON"]
+        formats = %w(CSV XLS XML JSON)
         value = Honcho.configuration[:supported_formats]
         if value.to_sym == :all
           formats
@@ -141,6 +138,10 @@ module Honcho
         else
           value
         end
+      end
+
+      def singularize_resource
+        puts 'abvd'
       end
   end
 end

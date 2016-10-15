@@ -1,2 +1,6 @@
-%li{class: "#{'current' if page.current?}"}
-  = link_to page, page.current? ? '#' : url, {:remote => remote, :rel => page.next? ? 'next' : page.prev? ? 'prev' : nil}
+- if page.current?
+  %a.item.active{ href: url, title: t('views.pagination.page.current') + " #{page}" }
+    = page
+- else
+  %a.item{ href: url, title: t('views.pagination.page.goto') + " #{page}" }
+    = page
