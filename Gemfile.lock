@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    honcho (0.0.1)
+    honcho (0.1.0)
       devise
       haml-rails
       jquery-rails
@@ -175,4 +175,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   1.13.0
+   1.13.4

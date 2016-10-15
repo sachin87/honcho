@@ -1,3 +1,4 @@
+
 module Honcho
   module ApplicationHelper
     # get browser title for the Honcho Dashboard
