@@ -1,5 +1,4 @@
 Honcho::Engine.routes.draw do
-
   get '/admin' => 'admin_dashboard#index'
 
   Honcho.configuration[:admin_models].each do |klass|
@@ -10,5 +9,4 @@ Honcho::Engine.routes.draw do
       end
     end
   end
-
 end
