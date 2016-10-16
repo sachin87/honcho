@@ -14,7 +14,7 @@ module Honcho
           block = -> { html_response }
           format.send(:html, &block)
         else
-          block = -> { eval "get_response_for_#{params[:format]}_request" }
+          block = -> { eval "#{params[:format]}_response" }
           format.send(params[:format], &block)
         end
       end

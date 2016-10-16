@@ -13,7 +13,7 @@
       </Row>
       <% @resources.each do |resource| %>
         <Row>
-          <% resource.object_attributes.each do |k,v| %>
+          <% resource.attributes.each do |k,v| %>
             <Cell><Data ss:Type="String"><%= v %></Data></Cell>
           <% end %>
         </Row>
@@ -21,4 +21,3 @@
     </Table>
   </Worksheet>
 </Workbook>
-
