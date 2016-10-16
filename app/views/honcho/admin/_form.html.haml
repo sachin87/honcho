@@ -1,7 +1,11 @@
-- f.object.class.table_attributes.each do |attribute|
-  .row
-    .small-3.columns
+.ui.form
+  - f.object.class.table_attributes.each do |attribute|
+    .inline.field
       = f.label attribute, *label_options(attribute, f)
-    .small-9.columns
       = f.input attribute.to_sym, input_options(f, attribute)
-= f.button :submit, class: 'ui primary button'
+  = link_to honcho.send("#{resource_name.downcase}_path"), class: 'ui labeled icon primary button' do
+    Back
+    %i.left.arrow.icon
+  = f.button :button, class: 'ui labeled icon primary button right floated' do
+    Create #{resource_name}
+    %i.checkmark.icon

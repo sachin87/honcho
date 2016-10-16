@@ -11,7 +11,7 @@ module Honcho
     def index
       respond_to do |format|
         if params[:format].blank?
-          block = -> { get_response_for_html_request }
+          block = -> { html_response }
           format.send(:html, &block)
         else
           block = -> { eval "get_response_for_#{params[:format]}_request" }
@@ -68,80 +68,80 @@ module Honcho
 
     private
 
-      def model_name_symbolized
-        @model_name_symbolized ||= model_name.capitalize
-      end
+    def model_name_symbolized
+      @model_name_symbolized ||= model_name.capitalize
+    end
 
-      def params_attr
-        @params_attr ||= params[:controller].split('/').last.singularize.downcase
-      end
+    def params_attr
+      @params_attr ||= params[:controller].split('/').last.singularize.downcase
+    end
 
-      def load_resource
-        @resource ||= klass.find params[:id]
-      end
+    def load_resource
+      @resource ||= klass.find params[:id]
+    end
 
-      def index_url
-        "/honcho/#{params[:controller].split('/').last}/"
-      end
+    def index_url
+      "/honcho/#{params[:controller].split('/').last}/"
+    end
 
-      def show_url
-        ["/honcho/#{params[:controller].split('/').last.singularize}/", load_resource]
-      end
+    def show_url
+      ["/honcho/#{params[:controller].split('/').last.singularize}/", load_resource]
+    end
 
-      def model_params
-        params.require(params_attr).permit(*klass.table_attributes)
-      end
+    def model_params
+      params.require(params_attr).permit(*klass.table_attributes)
+    end
 
-      def sort_column
-        klass.column_names.include?(params[:sort]) ? params[:sort] : klass.primary_key
-      end
+    def sort_column
+      klass.column_names.include?(params[:sort]) ? params[:sort] : klass.primary_key
+    end
 
-      def sort_direction
-        %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
-      end
+    def sort_direction
+      %w(asc desc).include?(params[:direction]) ? params[:direction] : 'asc'
+    end
 
-      def resources
-        @resources ||= klass.order(sort_column + ' ' + sort_direction).all
-      end
+    def resources
+      @resources ||= klass.order(sort_column + ' ' + sort_direction).all
+    end
 
-      def get_response_for_html_request
-        @resources = if params[:search].present?
-                       klass.search(params[:search]).page(params[:page])
-                     else
-                       klass.order(sort_column + ' ' + sort_direction).page(params[:page])
-                     end
-      end
+    def html_response
+      @resources = if params[:search].present?
+                     klass.search(params[:search]).page(params[:page])
+                   else
+                     klass.order(sort_column + ' ' + sort_direction).page(params[:page])
+                   end
+    end
 
-      def get_response_for_csv_request
-        send_data klass.to_csv(resources)
-      end
+    def csv_response
+      send_data klass.to_csv(resources)
+    end
 
-      def get_response_for_xls_request
-        resources
-      end
+    def xls_response
+      resources
+    end
 
-      def get_response_for_xml_request
-        render xml: resources
-      end
+    def xml_response
+      render xml: resources
+    end
 
-      def get_response_for_json_request
-        render json: resources
-      end
+    def json_response
+      render json: resources
+    end
 
-      def download_links
-        formats = %w(CSV XLS XML JSON)
-        value = Honcho.configuration[:supported_formats]
-        if value.to_sym == :all
-          formats
-        elsif value.nil?
-          []
-        else
-          value
-        end
+    def download_links
+      formats = %w(CSV XLS XML JSON)
+      value = Honcho.configuration[:supported_formats]
+      if value.to_sym == :all
+        formats
+      elsif value.nil?
+        []
+      else
+        value
       end
+    end
 
-      def model_name
-        @model_name ||= params[:controller].split('/').last.singularize
-      end
+    def model_name
+      @model_name ||= params[:controller].split('/').last.singularize
+    end
   end
 end
