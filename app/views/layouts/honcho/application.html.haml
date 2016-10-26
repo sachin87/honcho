@@ -14,6 +14,7 @@
     %meta{ content: 'width=device-width, initial-scale=1.0', name: 'viewport' }/
     %title= content_for?(:title) ? yield(:title) : browser_title
     = stylesheet_link_tag 'honcho/application'
+    = javascript_include_tag 'honcho/application'
     = csrf_meta_tags
   %body.pushable
     .ui.left.vertical.stackable.secondary.menu.inverted.sidebar
@@ -36,8 +37,6 @@
                 = message
               %i{ class: 'close icon', onclick: "$('.cookie.nag').nag('clear');" }
           = yield
-
-    = javascript_include_tag 'honcho/application'
 :javascript
   $('.cookie.nag')
   .nag({

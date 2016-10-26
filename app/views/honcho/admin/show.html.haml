@@ -1,12 +1,8 @@
 %table.ui.stackable.definition.padded.table
   - @resource.attributes.each do |label, value|
-    - if label == 'id'
-      %li.title
-        %strong #{label.humanize}: #{value}
-    - else
-      %tr
-        %td #{label.humanize}:
-        %td #{value}
+    %tr
+      %td #{label.humanize}:
+      %td #{value}
 %div.ui.buttons
   = link_to resource_url("edit", @resource), class: 'ui labeled icon basic button' do
     Edit    

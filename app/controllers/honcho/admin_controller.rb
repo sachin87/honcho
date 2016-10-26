@@ -9,6 +9,7 @@ module Honcho
     before_action :load_resource, except: [:index, :new, :create, :import]
 
     def index
+      model_params
       respond_to do |format|
         if params[:format].blank?
           block = -> { html_response }
@@ -89,7 +90,13 @@ module Honcho
     end
 
     def model_params
-      params.require(params_attr).permit(*klass.table_attributes)
+      if params[:search].present?
+        params.require(:search).permit!
+      elsif params[:action] == "index"
+        {}
+      else
+        params.require(params_attr).permit(*klass.table_attributes)
+      end  
     end
 
     def sort_column
