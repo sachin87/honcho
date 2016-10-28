@@ -1,15 +1,8 @@
-%div.ui.four.column.stackable.center.aligned.padded.grid
-  %div.red.column
-    %i.bar.chart.icon
-  %div.green.column
-    %i.bar.chart.icon
-  %div.blue.column
-    %i.bar.chart.icon
-  %div.yellow.column
-    %i.bar.chart.icon
-- Honcho.configuration[:import_form_for].each do |klass|
-  %h3 Import #{klass.to_s}
+.ui.main.grid
+  .row
+  - Honcho.configuration[:import_form_for].each do |klass|
+    %h3 Import #{klass.to_s}
 
-  = form_tag honcho.send("import_#{klass.to_s.pluralize}_path"), multipart: true do
-    = file_field_tag :file
-    = submit_tag 'Import'
+    = form_tag honcho.send("import_#{klass.to_s.pluralize}_path"), multipart: true do
+      = file_field_tag :file
+      = submit_tag 'Import'

@@ -3,5 +3,3 @@
 %div.ui.form.padded.raised.segment
   = simple_form_for(@resource, url: eval("honcho.#{@resource.class.name.downcase}_path(@resource)"), method: :put) do |f|
     = render 'form', f: f
-
-  = link_to 'Back', honcho.send("#{resource_name.downcase}_path"), class: 'button small round'

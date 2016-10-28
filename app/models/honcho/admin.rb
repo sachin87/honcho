@@ -1,6 +1,6 @@
 module Honcho
   module Admin
-    MAGIC_COLUMNS = ['id', 'created_at', 'updated_at']  
+    MAGIC_COLUMNS = %w(id created_at updated_at).freeze
 
     def self.included(base)
       base.send(:include, InstanceMethods)
@@ -46,10 +46,10 @@ module Honcho
 
         def open_spreadsheet(file)
           case File.extname(file.original_filename)
-            when '.csv' then CSV.new(file.path, nil, :ignore)
-            when '.xls' then Roo::Excel.new(file.path, nil, :ignore)
-            when '.xlsx' then Roo::Excelx.new(file.path, nil, :ignore)
-            else raise "Unknown file type: #{file.original_filename}"
+          when '.csv' then CSV.new(file.path, nil, :ignore)
+          when '.xls' then Roo::Excel.new(file.path, nil, :ignore)
+          when '.xlsx' then Roo::Excelx.new(file.path, nil, :ignore)
+          else raise "Unknown file type: #{file.original_filename}"
           end
         end
       end

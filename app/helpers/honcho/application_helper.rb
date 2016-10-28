@@ -1,4 +1,3 @@
-
 module Honcho
   module ApplicationHelper
     # get browser title for the Honcho Dashboard
@@ -8,7 +7,7 @@ module Honcho
 
     # Dashboard Title can be configured in config/honcho.rb
     def application_title
-      Honcho.configuration[:title] || "Honcho"
+      Honcho.configuration[:title] || 'Honcho'
     end
 
     # Resources, you want to manage under admin panel,

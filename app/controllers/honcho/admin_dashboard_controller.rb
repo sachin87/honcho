@@ -1,4 +1,4 @@
-require_dependency "honcho/application_controller"
+require_dependency 'honcho/application_controller'
 
 module Honcho
   class AdminDashboardController < ApplicationController

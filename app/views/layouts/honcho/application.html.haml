@@ -17,29 +17,44 @@
     = javascript_include_tag 'honcho/application'
     = csrf_meta_tags
   %body.pushable
-    .ui.left.vertical.stackable.secondary.menu.inverted.sidebar
+    -# Responsive Side Bar
+    .ui.sidebar.vertical.borderless.menu
       .item
         %h1
           = application_title.to_s
       - nav_bar_options.each do |nav|
         .item
           = link_to "#{nav}", eval("honcho.#{nav.downcase.pluralize}_path")
+    -# Fixed Top Menu
+    .ui.fixed.borderless.menu
+      .item
+        %h1
+          = link_to application_title.to_s, '#'
+
     .pusher
-      .full.height
-        .ui.stackable.menu
+      .ui.main.grid{ style: 'margin-top: 6em;' }
+        .ui.left.fixed.vertical.borderless.menu
           .item
-            %h1
-              = link_to application_title.to_s, '#', onclick: "$('.ui.sidebar').sidebar('setting', 'transition', 'scale down').sidebar('toggle');"
-        .ui.main.container
+            %h2
+              = application_title.to_s
+          - nav_bar_options.each do |nav|
+            .item
+              = link_to "#{nav}", eval("honcho.#{nav.downcase.pluralize}_path")
           - flash.each do |_key, message|
             %div{ class: 'ui inline cookie nag #{key}', 'data-alert' => '' }
               %span.title
                 = message
               %i{ class: 'close icon', onclick: "$('.cookie.nag').nag('clear');" }
-          = yield
+        .ui.fixed.main.menu
+          .ui.container
+          -# Responsive Menu
+        = yield
+
+    = javascript_include_tag 'honcho/application'
 :javascript
   $('.cookie.nag')
   .nag({
     key      : 'accepts-cookies',
     value    : true
   });
+  $('.ui.vertical.following.fluid.accordion.text.menu').sticky();
