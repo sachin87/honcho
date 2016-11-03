@@ -112,8 +112,10 @@ module Honcho
     end
 
     def html_response
-      @resources = if params[:search].present?
-                     klass.search(params[:search]).page(params[:page])
+      @search = klass.ransack(params[:q])
+      @search.build_condition if @search.conditions.empty?
+      @resources = if params[:q].present?
+                     @search.result(distinct: true).page(params[:page])
                    else
                      klass.order(sort_column + ' ' + sort_direction).page(params[:page])
                    end

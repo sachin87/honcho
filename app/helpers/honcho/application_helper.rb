@@ -1,5 +1,8 @@
 module Honcho
   module ApplicationHelper
+    require 'ransack'
+    
+    include Ransack::Helpers::FormHelper
     # get browser title for the Honcho Dashboard
     def browser_title
       Honcho.configuration[:browser_title] || 'Honcho'
@@ -91,6 +94,17 @@ module Honcho
       css_class = column == sort_column ? "current #{sort_direction}" : nil
       direction = column == sort_column && sort_direction == 'asc' ? 'desc' : 'asc'
       link_to title, honcho.send("#{resource_name.downcase}_path", {sort: column, direction: direction}), {class: css_class}
+    end
+
+    def link_to_add_fields(name, f, association)
+      association = "new_#{association}"
+      new_object = f.object.send(association)
+      id = new_object.object_id
+
+      fields = f.fields_for(association, new_object, child_index: id) do |builder|
+        render("condition_fields", f: builder)
+      end
+      link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
     end
   end
 end
