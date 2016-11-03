@@ -18,7 +18,7 @@
     = csrf_meta_tags
   %body.pushable
     -# Responsive Side Bar
-    .ui.sidebar.vertical.borderless.menu
+    .ui.left.sidebar.vertical.menu
       .item
         %h1
           = application_title.to_s
@@ -26,14 +26,14 @@
         .item
           = link_to "#{nav}", eval("honcho.#{nav.downcase.pluralize}_path")
     -# Fixed Top Menu
-    .ui.fixed.borderless.menu
+    .ui.fixed.borderless.menu.nav-bar
       .item
         %h1
           = link_to application_title.to_s, '#'
 
     .pusher
       .ui.main.grid{ style: 'margin-top: 6em;' }
-        .ui.left.fixed.vertical.borderless.menu
+        .ui.left.fixed.vertical.borderless.menu.segment
           .item
             %h2
               = application_title.to_s
@@ -45,9 +45,11 @@
               %span.title
                 = message
               %i{ class: 'close icon', onclick: "$('.cookie.nag').nag('clear');" }
-        .ui.fixed.main.menu
+        -# Responsive Menu
+        .ui.fixed.main.borderless.menu
           .ui.container
-          -# Responsive Menu
+            %a.launch.icon.item.sidebar-toggle
+              %i.sidebar.icon
         = yield
 
     = javascript_include_tag 'honcho/application'
@@ -57,4 +59,6 @@
     key      : 'accepts-cookies',
     value    : true
   });
-  $('.ui.vertical.following.fluid.accordion.text.menu').sticky();
+  $("a.sidebar-toggle").click(function() {
+    $('.ui.sidebar').sidebar('toggle');
+  });

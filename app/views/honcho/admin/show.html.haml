@@ -1,12 +1,16 @@
-%table.ui.basic.fixed.table.segment
+.ui.massive.breadcrumb
+  = link_to resource_name, honcho.send("#{resource_name.downcase}_path"), class: 'section'
+  .divider /
+  .active.section=@resource.id
+%table.ui.basic.definition.table.segment
   - @resource.attributes.each do |label, value|
     %tr
       %td #{label.humanize}:
       %td #{value}
 %div.ui.buttons
-  = link_to resource_url("edit", @resource), class: 'ui labeled icon basic button' do
+  = link_to resource_url("edit", @resource), class: 'ui labeled icon yellow button' do
     Edit
     %i.edit.icon
-  = link_to honcho.send("#{resource_name.downcase}_path"), class: 'ui labeled icon basic button' do
+  = link_to honcho.send("#{resource_name.downcase}_path"), class: 'ui labeled icon olive button' do
     Back
     %i.left.arrow.icon
