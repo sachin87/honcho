@@ -1,11 +1,27 @@
 .ui.form
   - f.object.class.table_attributes.each do |attribute|
-    .inline.field
+    .field
       = f.label attribute, *label_options(attribute, f)
-      = f.input attribute.to_sym, input_options(f, attribute)
+      %div{class: "ui #{input_type(f, attribute) == :datetime ? 'calendar': ''}"}
+        = f.input attribute.to_sym, input_options(f, attribute)
   = link_to honcho.send("#{resource_name.downcase}_path"), class: 'ui labeled icon primary button' do
     Back
     %i.left.arrow.icon
   = f.button :button, class: 'ui labeled icon primary button right floated' do
     Create #{resource_name}
     %i.checkmark.icon
+
+:javascript
+  $('.dropdown').dropdown();
+  $('.calendar').calendar({
+    monthFirst: false,
+    formatter: {
+      date: function (date, settings) {
+        if (!date) return '';
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        return day + '/' + month + '/' + year;
+      }
+    }
+  });

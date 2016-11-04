@@ -1,7 +1,10 @@
-%fieldset
+%fieldset{style: 'border:none;'}
   = f.attribute_fields do |a|
-    = a.attribute_select
-  = f.predicate_select
+    = a.attribute_select({},{class: 'ui search dropdown'})
+  = f.predicate_select({},{class: 'ui search dropdown'})
   = f.value_fields do |v|
     = v.text_field :value
-  = link_to "remove", '#', class: "remove_fields"
+  = link_to "remove", '#', class: 'remove_fields'
+
+:javascript
+  $('.dropdown').dropdown();

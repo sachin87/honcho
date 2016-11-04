@@ -1,12 +1,12 @@
 .ui.stackable.grid
   .twelve.wide.column
-    .ui.two.column.padded.grid
+    .ui.two.column.grid
       .column
         %h2= "Listing #{resource_name}"
       .right.aligned.middle.aligned.column
         = link_to "Create New #{resource_name}", honcho.send("new_#{singularize_resource}_path"), class: 'ui primary button'
 
-    .ui.two.column.padded.grid
+    .ui.two.column.grid
       .column
         Download:
         - download_links.each do |format|
@@ -35,8 +35,7 @@
               .ui.toggle.checkbox
                 = check_box_tag resource.id, false
                 = label_tag ''
-            %td= resource.id
-            - resource.attributes.each do |_k, v|
+            - resource.object_attributes.each do |_k, v|
               %td= v
             %td
               .ui.three.tiny.buttons
@@ -47,7 +46,7 @@
                 = link_to honcho.send("#{singularize_resource}_path", resource.id), data: { method: :delete, confirm: 'Are you sure?', alert: { class: 'alert-box alert round' } }, class: 'ui red icon button', title: 'Delete' do
                   %i.trash.outline.icon
 
-    .ui.one.column.padded.grid
+    .ui.one.column.grid
       .right.aligned.column
         = paginate @resources
 

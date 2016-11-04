@@ -15,6 +15,7 @@ body {
 }
 
 .ui.left.fixed.vertical.menu {
+  width: auto;
   padding-left: 0;
   padding-right: 0;
 }
@@ -32,6 +33,7 @@ body {
 .nav-bar {
   box-shadow: none !important;
 }
+
 /* SMARTPHONE */
 @media only screen and (min-width: 320px) and (max-width: 767px) {
   .ui.left.fixed.vertical.menu {

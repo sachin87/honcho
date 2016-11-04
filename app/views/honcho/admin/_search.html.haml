@@ -1,13 +1,13 @@
-%div.ui.padded.segment
+%div.ui.segment
   %h3
     Search
   %div.item
     = search_form_for @search, url: eval("honcho.#{klass.name.downcase.pluralize}_path"), method: :get, 	html: { id: "search" } do |f|
       = f.condition_fields do |c|
-        = render "condition_fields", f: c
-      %p=link_to_add_fields "Add Conditions", f, :condition
+        = render 'condition_fields', f: c
+      %p=link_to_add_fields 'Add Conditions', f, :condition
       .field
         Sort:
         = f.sort_fields do |s|
           = s.sort_select
-      .actions= f.submit "Search"
+      = f.submit 'Search', class: 'ui primary button'

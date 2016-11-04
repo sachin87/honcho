@@ -33,9 +33,9 @@
 
     .pusher
       .ui.main.grid{ style: 'margin-top: 6em;' }
-        .ui.left.fixed.vertical.borderless.menu.segment
+        .ui.left.fixed.vertical.borderless.menu.padded.segment
           .item
-            %h2
+            %h1
               = application_title.to_s
           - nav_bar_options.each do |nav|
             .item

@@ -1,7 +1,7 @@
 module Honcho
   module ApplicationHelper
     require 'ransack'
-    
+
     include Ransack::Helpers::FormHelper
     # get browser title for the Honcho Dashboard
     def browser_title
@@ -69,15 +69,17 @@ module Honcho
         type
       elsif type == :datetime
         :datetime
+      else
+        type
       end
     end
 
     def input_options(form_object, attribute, type = :string)
       t = input_type(form_object, attribute, type = :string)
       options = {}
-      options[:as] = t
+      options[:as] = t == :datetime ? :string : t
       options[:label] = false
-      options[:class] = 'error'
+      options[:input_html] = {class: ''}
       options[:required] = Honcho.configuration[:html5_validations]
       options[:collection] = klass.all if t == :select
       options
