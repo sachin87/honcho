@@ -23,7 +23,7 @@
               = check_box_tag :select_all, true, false, id: 'selectAll'
               = label_tag ''
           %th= sortable 'id'
-          - klass.table_attributes.each do |attribute|
+          - klass.index_columns.each do |attribute|
             %th
               = sortable attribute
           %th Actions

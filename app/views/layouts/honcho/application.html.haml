@@ -31,25 +31,32 @@
         %h1
           = link_to application_title.to_s, '#'
 
-    .pusher
-      .ui.main.grid{ style: 'margin-top: 6em;' }
-        .ui.left.fixed.vertical.borderless.menu.padded.segment
+    .pusher{ style: 'background:#eee;' }
+      .ui.main.grid{ style: 'padding-top: 5.5em;' }
+        .ui.left.fixed.vertical.borderless.menu.segment{ style: 'margin-top: 62px;background:#f5f5f5;padding:0 !important;' }
           .item
-            %h1
-              = application_title.to_s
-          - nav_bar_options.each do |nav|
-            .item
-              = link_to "#{nav}", eval("honcho.#{nav.downcase.pluralize}_path")
-          - flash.each do |_key, message|
-            %div{ class: 'ui inline cookie nag #{key}', 'data-alert' => '' }
-              %span.title
-                = message
-              %i{ class: 'close icon', onclick: "$('.cookie.nag').nag('clear');" }
+            %h1= application_title.to_s
+          .item
+            .ui.accordion
+              .title
+                Models
+                %i.dropdown.icon
+              .content
+                .ui.list
+                  - nav_bar_options.each do |nav|
+                    .item
+                      = link_to "#{nav}", eval("honcho.#{nav.downcase.pluralize}_path")
+
         -# Responsive Menu
         .ui.fixed.main.borderless.menu
           .ui.container
             %a.launch.icon.item.sidebar-toggle
               %i.sidebar.icon
+        - flash.each do |_key, message|
+          %div{ class: 'ui inline cookie nag #{key}', 'data-alert' => '' }
+            %span.title
+              = message
+            %i{ class: 'close icon', onclick: "$('.cookie.nag').nag('clear');" }
         = yield
 
     = javascript_include_tag 'honcho/application'
@@ -62,3 +69,4 @@
   $("a.sidebar-toggle").click(function() {
     $('.ui.sidebar').sidebar('toggle');
   });
+  $('.ui.accordion').accordion();

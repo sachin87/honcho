@@ -4,12 +4,13 @@
       = f.label attribute, *label_options(attribute, f)
       %div{class: "ui #{input_type(f, attribute) == :datetime ? 'calendar': ''}"}
         = f.input attribute.to_sym, input_options(f, attribute)
-  = link_to honcho.send("#{resource_name.downcase}_path"), class: 'ui labeled icon primary button' do
-    Back
-    %i.left.arrow.icon
-  = f.button :button, class: 'ui labeled icon primary button right floated' do
-    Create #{resource_name}
-    %i.checkmark.icon
+  .field
+    = link_to honcho.send("#{resource_name.downcase}_path"), class: 'ui labeled icon primary button' do
+      Back
+      %i.left.arrow.icon
+    = f.button :button, class: 'ui labeled icon primary button right floated' do
+      Create #{resource_name}
+      %i.checkmark.icon
 
 :javascript
   $('.dropdown').dropdown();
