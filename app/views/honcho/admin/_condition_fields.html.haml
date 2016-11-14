@@ -1,10 +1,9 @@
-%fieldset{style: 'border:none;'}
-  .two.fields
-    .field
-      = f.attribute_fields do |a|
-        = a.attribute_select({},{class: 'ui search dropdown'})
-    .field
-      = f.predicate_select({},{class: 'ui search dropdown'})
+.ui.form
+  .field
+    = f.attribute_fields do |a|
+      = a.attribute_select({},{class: 'ui search dropdown'})
+  .field
+    = f.predicate_select({},{class: 'ui search dropdown'})
   = f.value_fields do |v|
     = v.text_field :value
   = link_to "remove", '#', class: 'remove_fields'

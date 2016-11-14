@@ -3,7 +3,7 @@
   = search_form_for @search, url: eval("honcho.#{klass.name.downcase.pluralize}_path"), method: :get, 	html: { id: "search", class:'ui form' } do |f|
     = f.condition_fields do |c|
       = render 'condition_fields', f: c
-    %p=link_to_add_fields 'Add Conditions', f, :condition
+      %p=link_to_add_fields 'Add Conditions', f, :condition
     .field
       Sort:
       = f.sort_fields do |s|
