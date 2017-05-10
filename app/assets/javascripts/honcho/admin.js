@@ -3,18 +3,18 @@
 
 
 $(function() {
-    $('#selectAll').click(function() {
-        if (this.checked) {
-            $(':checkbox').each(function() {
-                this.checked = true;
-            });
-        } else {
-            $(':checkbox').each(function() {
-                this.checked = false;
-            });
-        }
-    });
 
+  $('#selectAll').click(function() {
+    if (this.checked) {
+      $(':checkbox').each(function() {
+        this.checked = true;
+      });
+    } else {
+      $(':checkbox').each(function() {
+        this.checked = false;
+      });
+    }
+  });
 
   $('form#search').on('click', '.remove_fields', function(event) {
     $(this).prev('input[type=hidden]').val('1');
@@ -29,4 +29,5 @@ $(function() {
     $(this).before($(this).data('fields').replace(regexp, time));
     event.preventDefault();
   });
+
 })
