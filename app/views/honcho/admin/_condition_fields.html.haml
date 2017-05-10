@@ -1,12 +1,12 @@
 .ui.form
   .field
     = f.attribute_fields do |a|
-      = a.attribute_select({},{class: 'ui search dropdown'})
+      = a.attribute_select({prompt: 'Please select....'},{class: 'ui search dropdown'})
   .field
     = f.predicate_select({},{class: 'ui search dropdown'})
   = f.value_fields do |v|
-    = v.text_field :value
-  = link_to "remove", '#', class: 'remove_fields'
+    = v.text_field :value, placeholder: 'Search with .....'
+  = link_to 'remove', '#', class: 'remove_fields'
 
 :javascript
   $('.dropdown').dropdown();

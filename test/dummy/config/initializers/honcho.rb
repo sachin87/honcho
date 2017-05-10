@@ -14,7 +14,7 @@ Honcho.config do |config|
   config.title "Admin Panel"
 
   # you can set the default theme of your application over here
-  
+
   config.default_theme :blue
 
   # Set the resources which you need to be under admin panel

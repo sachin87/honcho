@@ -12,10 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require honcho/admin
-//= require honcho/admin_dashboard
-//= require honcho/index_page
-//= require honcho/semantic.min
 //= require honcho/components/accordion.min
 //= require honcho/components/api.min
 //= require honcho/components/calendar.min
@@ -39,3 +35,7 @@
 //= require honcho/components/video.min
 //= require honcho/components/visibility.min
 //= require honcho/components/visit.min
+//= require honcho/admin
+//= require honcho/admin_dashboard
+//= require honcho/index_page
+//= require honcho/semantic.min
