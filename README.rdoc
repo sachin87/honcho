@@ -1,6 +1,6 @@
 # Honcho
 
-The Simplest, Highly Customizable Administration Framework for Ruby on Rails with Zurb Foundation.
+The Simplest, Highly Customizable Administration Framework for Ruby on Rails with Semantic UI.
 
 ## Usage
 How to use my plugin.
